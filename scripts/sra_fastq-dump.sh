@@ -13,5 +13,5 @@ for RUN in `cat ${DIR_DATA}SRR_Acc_List.txt`;
 do
 	echo ${RUN};
 	date;
-	# ${TOOLKIT}/fastq-dump -X 5 -Z ${RUN}; # -O ${DIR_SAVE};
+	${TOOLKIT}/fastq-dump ${RUN} -O ${DIR_SAVE};
 done
