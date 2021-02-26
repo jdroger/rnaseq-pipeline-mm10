@@ -1,0 +1,2 @@
+/mnt/e/rnaseq//data//sra//SRR12360081.fastq
+/mnt/e/rnaseq//data//sra//SRR12360090.fastq
