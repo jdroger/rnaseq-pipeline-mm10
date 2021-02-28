@@ -5,6 +5,7 @@
 FROM continuumio/miniconda3:latest
 
 # Install dependencies via miniconda
+WORKDIR /
 RUN conda config --add channels bioconda && \
     conda install \
         sra-tools \
@@ -13,8 +14,8 @@ RUN conda config --add channels bioconda && \
         kallisto
 
 # Copy local files to container
-COPY ./* .
+COPY . .
 
 # Run master shell script for accession list
 WORKDIR /rnaseq
-CMD [ "scripts/run_pipeline", "SRR_Acc_List.txt" ]
+CMD [ "sh", "-c", "scripts/run_pipeline.sh --SRR_Acc_List.txt" ]
