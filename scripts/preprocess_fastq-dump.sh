@@ -10,14 +10,14 @@
 #
 # define variables
 TOOLKIT=/usr/bin/sratoolkit.2.10.9-ubuntu64/bin
-DIR_HOME=/mnt/e/rnaseq/
+DIR_HOME=/mnt/e/other-projects/rnaseq/
 DIR_DATA=${DIR_HOME}/data/
 DIR_SAVE=${DIR_DATA}/sra/
 #
 # check if fastq files are already stored in save directory
 for RUN in `cat $1`;
 do
-	FILE = ${DIR_SAVE}/$RUN.fastq
+	FILE=${DIR_SAVE}/$RUN.fastq
 	if test -f "$FILE"; then
 		echo "$FILE already exists"
 	else
