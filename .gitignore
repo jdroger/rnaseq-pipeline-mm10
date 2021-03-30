@@ -1,3 +1,6 @@
 *.fastq
+*.fastq.gz
 *.sam
 *.bam
+*.html
+*.zip
