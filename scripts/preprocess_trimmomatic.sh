@@ -12,13 +12,14 @@ DIR_SAVE=${DIR_DATA}/trimmomatic/
 # run trimmomatic on each fastq file + save trimmed fastq files
 for FILE_IN in ${DIR_FASTQ}/*.fastq.gz;
 do
+    # modify file name for save location
     FILE_OUT=$(basename "${FILE_IN}" | awk -F\. -v OFS=\. '$1=$1"_trimmed"');
     # echo ${DIR_SAVE}/${FILE_OUT};
+    # run trimmomatic (default settings, single end mode)
     java -jar ${TOOLKIT}/trimmomatic-0.39.jar SE \
-        -phred33 \
         ${FILE_IN} \
         ${DIR_SAVE}/${FILE_OUT} \
-        ILLUMINACLIP:TruSeq3-SE:2:30:10 \
+        ILLUMINACLIP:${TOOLKIT}/adapters/TruSeq3-SE.fa:2:30:10 \
         LEADING:3 \
         TRAILING:3 \
         SLIDINGWINDOW:4:15
