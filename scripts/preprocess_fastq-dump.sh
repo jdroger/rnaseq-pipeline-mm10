@@ -9,27 +9,19 @@
 # Example: `source preprocess_fastq-dump.sh SRR_Acc_List.txt` downloads 2 fastq files to data/sra/
 #
 # define variables
-TOOLKIT=/usr/bin/sratoolkit.2.10.9-ubuntu64/bin
-DIR_HOME=/mnt/e/other-projects/rnaseq/
-DIR_DATA=${DIR_HOME}/data/
-DIR_SAVE=${DIR_DATA}/sra/
+# TOOLKIT=/usr/bin/sratoolkit.2.10.9-ubuntu64/bin
+# DIR_HOME=/mnt/e/other-projects/rnaseq/
+# DIR_DATA=${DIR_HOME}/data/
+# DIR_SAVE=${DIR_DATA}/sra/
 #
 # check if fastq files are already stored in save directory
-for RUN in `cat $1`;
-do
-	FILE=${DIR_SAVE}/$RUN.fastq.gz
+for RUN in `cat $1`; do
+	FILE=${DIR_SRA}/$RUN.fastq.gz
 	if test -f "$FILE"; then
-		echo "$FILE already exists, skipping download"
+		echo "$FILE already exists, skipping dump"
 	else
-		echo "downloading $RUN.fastq..."
-		${TOOLKIT}/fastq-dump ${RUN} --outdir ${DIR_SAVE} --gzip;
+		echo "dumping $RUN.fastq..."
+		fastq-dump ${RUN} --outdir ${DIR_SRA} --gzip;
 		echo "fastq saved to $FILE"
 	fi
 done
-# use fastq-dump to convert to fastq
-# for RUN in `cat $1`; 
-# do
-# 	echo ${RUN};
-# 	date;
-# 	${TOOLKIT}/fastq-dump ${RUN} -O ${DIR_SAVE};
-# done
