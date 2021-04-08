@@ -4,18 +4,20 @@
 
 # define variables
 # TOOLKIT=/usr/bin/salmon-latest_linux_x86_64/bin/
-# DIR_HOME=/mnt/e/other-projects/rnaseq/
-# DIR_DATA=${DIR_HOME}/data/
-# DIR_FASTQ=${DIR_DATA}/trimmomatic/
-# DIR_SAVE=${DIR_DATA}/salmon
+DIR_HOME=/mnt/e/other-projects/rnaseq/
+DIR_DATA=${DIR_HOME}/data/
+DIR_TRIM=${DIR_DATA}/trimmomatic/
+DIR_COUNT=${DIR_DATA}/salmon
+DIR_REF=${DIR_COUNT}/reference-genomes/alias/mm10/salmon_partial_sa_index/default/
+NUM_THREADS=10
 
 # construct index from transcriptome (if doesn't exist) 
 REFGENIE=${DIR_COUNT}/reference-genomes/genome_config.yaml
 
 if test -d "${DIR_REF}"; then
-        echo "index already exists, skipping to quantification"
+        echo "Index already exists, skipping to quantification"
 else 
-        echo "index does not exist, pulling index via refgenie..."
+        echo "Index does not exist, pulling index via refgenie..."
         refgenie pull mm10/salmon_partial_sa_index -c ${REFGENIE}
         ###### Old Method ######
         # # extract genome targets + save to decoys.txt
@@ -37,7 +39,7 @@ else
 fi
 
 # run salmon on all trimmed files + save count files
-echo "starting transcript quantification via Salmon..."
+echo "Starting transcript quantification via Salmon..."
 for FILE in ${DIR_TRIM}/*.fastq.gz; do
         FILE_OUT=$(basename "${FILE}" .fastq.gz | sed 's/trimmed/count/');
         salmon quant \
@@ -47,5 +49,4 @@ for FILE in ${DIR_TRIM}/*.fastq.gz; do
                 -r ${FILE} \
                 --validateMappings \
                 -o ${DIR_COUNT}/${FILE_OUT}
-
-
+done
