@@ -5,3 +5,6 @@
 *.bam
 *.html
 *.zip
+data/salmon/reference-genomes/alias/*
+data/salmon/reference-genomes/data/*
+data/salmon/SRR*
