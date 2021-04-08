@@ -1,3 +1,4 @@
+*.sra.cache
 *.fa.gz
 *.fastq
 *.fastq.gz
