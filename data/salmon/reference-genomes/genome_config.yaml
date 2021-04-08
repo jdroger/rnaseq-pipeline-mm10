@@ -1,0 +1,40 @@
+config_version: 0.4
+genome_folder: /mnt/e/other-projects/rnaseq/data/salmon-genome
+genome_servers: 
+ - http://refgenomes.databio.org
+genomes:
+  0f10d83b1050c08dd53189986f60970b92a315aa7a16a6f1:
+    aliases: 
+     - mm10
+    assets:
+      fasta:
+        tags:
+          default:
+            asset_digest: 4afce2deeceae65b4c0987b9297cf441
+            asset_children: 
+             - 0f10d83b1050c08dd53189986f60970b92a315aa7a16a6f1/salmon_partial_sa_index:default
+      ensembl_gtf:
+        tags:
+          default:
+            asset_digest: 1f79aef492221ed46fb75cfd7fe345ba
+            asset_children: 
+             - 0f10d83b1050c08dd53189986f60970b92a315aa7a16a6f1/salmon_partial_sa_index:default
+      fasta_txome:
+        tags:
+          default:
+            asset_digest: 8192beb5916da1fdc5640b529fc7bb97
+            asset_children: 
+             - 0f10d83b1050c08dd53189986f60970b92a315aa7a16a6f1/salmon_partial_sa_index:default
+      salmon_partial_sa_index:
+        tags:
+          default:
+            seek_keys:
+              salmon_partial_sa_index: .
+            asset_parents: 
+             - 0f10d83b1050c08dd53189986f60970b92a315aa7a16a6f1/fasta:default
+             - 0f10d83b1050c08dd53189986f60970b92a315aa7a16a6f1/ensembl_gtf:default
+             - 0f10d83b1050c08dd53189986f60970b92a315aa7a16a6f1/fasta_txome:default
+            asset_path: salmon_partial_sa_index
+            asset_digest: 2c3a11372ab66e803f5c2b32ed38bf7e
+        default_tag: default
+    genome_description: The GCA_000001635.5 seqs_for_alignment_pipelines from NCBI
